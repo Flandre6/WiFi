@@ -13,7 +13,7 @@ done
 CFGS=$($CMDPREFIX find $EXISTING_DIRS -type f -name WCNSS_qcom_cfg.ini)
 for CFG in $CFGS
 do
-[[ -f $CFG ]] && {
+[[ -f $CFG ]] && { 、
 mkdir -p `dirname $MODPATH$CFG`
 ui_print "- Migrating $CFG"
 $CMDPREFIX cp -af $CFG $MODPATH$CFG
