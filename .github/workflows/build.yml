@@ -1,0 +1,22 @@
+name: Build EXE
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+
+      - run: pip install pyinstaller flask
+      - run: pyinstaller --onefile backend/app.py
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - run: npm install
+      - run: npm run build
