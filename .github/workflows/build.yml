@@ -1,4 +1,4 @@
-name: Build EXE
+name: Build
 
 on: [push]
 
@@ -12,11 +12,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
 
-      - run: pip install pyinstaller flask
-      - run: pyinstaller --onefile backend/app.py
+      - name: Install deps
+        run: pip install pyinstaller flask
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-
-      - run: npm install
-      - run: npm run build
+      - name: Build exe
+        run: |
+          mkdir build
+          mkdir dist
+          pyinstaller --onefile backend/app.py --clean --distpath dist --workpath build
